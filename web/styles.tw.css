@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@source "../../lib/src/components/*.dart";
-@source "../../lib/src/blocks/*.dart";
 @source "../lib/**/*.dart";
 
 /* Force-generate arbitrary variant selectors that Tailwind's Dart scanner misses */

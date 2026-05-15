@@ -44,7 +44,10 @@ jobs:
         run: npm ci --ignore-scripts || npm install
 
       - name: Build Tailwind CSS
-        run: npx @tailwindcss/cli -i web/styles.tw.css -o web/styles.css
+        run: |
+          SHADCN_PATH=$(find $HOME/.pub-cache -name "shadcn_jaspr-*" -type d -print -quit)
+          echo "Found shadcn_jaspr at: $SHADCN_PATH"
+          npx @tailwindcss/cli -i web/styles.tw.css -o web/styles.css --source "$SHADCN_PATH/lib/**/*.dart"
 
       - name: Build Jaspr
         run: jaspr build
