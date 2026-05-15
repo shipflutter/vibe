@@ -47,7 +47,12 @@ jobs:
         run: |
           SHADCN_PATH=$(find $HOME/.pub-cache -name "shadcn_jaspr-*" -type d -print -quit)
           echo "Found shadcn_jaspr at: $SHADCN_PATH"
-          npx @tailwindcss/cli -i web/styles.tw.css -o web/styles.css --source "$SHADCN_PATH/lib/**/*.dart"
+          echo "@source '$SHADCN_PATH/lib/**/*.dart';" >> web/styles.tw.css
+          npx @tailwindcss/cli -i web/styles.tw.css -o web/styles.css
+
+      - name: Fix Base Href in index.html
+        run: |
+          sed -i 's|<head>|<head>\n  <base href="/vibe/">|' web/index.html
 
       - name: Build Jaspr
         run: jaspr build
