@@ -100,3 +100,4 @@ android/.kotlin
 coverage
 .claude
 .config.env
+node_modules

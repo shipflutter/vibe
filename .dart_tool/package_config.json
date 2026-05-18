@@ -3,13 +3,13 @@
   "packages": [
     {
       "name": "_fe_analyzer_shared",
-      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-96.0.0",
+      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-93.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/analyzer-10.2.0",
+      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/analyzer-10.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -80,6 +80,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "characters",
+      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/characters-1.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "checked_yaml",
       "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/checked_yaml-2.0.4",
       "packageUri": "lib/",
@@ -132,6 +138,12 @@
       "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/fixnum-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.1"
+    },
+    {
+      "name": "flutter",
+      "rootUri": "file:///Users/trunghieuvn/development/flutter/packages/flutter",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
     },
     {
       "name": "glob",
@@ -206,8 +218,14 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "material_color_utilities",
+      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/material_color_utilities-0.13.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
       "name": "meta",
-      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/meta-1.18.2",
+      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/meta-1.17.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -302,6 +320,12 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "sky_engine",
+      "rootUri": "file:///Users/trunghieuvn/development/flutter/bin/cache/pkg/sky_engine",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
       "name": "source_gen",
       "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/source_gen-4.2.3",
       "packageUri": "lib/",
@@ -366,6 +390,12 @@
       "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/uuid-4.5.3",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "vector_math",
+      "rootUri": "file:///Users/trunghieuvn/.pub-cache/hosted/pub.dev/vector_math-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
     },
     {
       "name": "vm_service",

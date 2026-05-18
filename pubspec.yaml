@@ -6,6 +6,8 @@ environment:
   sdk: ^3.6.0
 
 dependencies:
+  flutter:
+    sdk: flutter
   jaspr: #^0.23.1
   universal_web: ^1.1.1+1
   shadcn_jaspr: ^0.4.3
@@ -17,3 +19,6 @@ dev_dependencies:
 
 jaspr:
   mode: client
+
+flutter:
+  uses-material-design: true

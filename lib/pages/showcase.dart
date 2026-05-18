@@ -245,8 +245,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                 variant: ButtonVariant.outline),
             ShadButton([Component.text('Secondary')],
                 variant: ButtonVariant.secondary),
-            ShadButton([Component.text('Ghost')],
-                variant: ButtonVariant.ghost),
+            ShadButton([Component.text('Ghost')], variant: ButtonVariant.ghost),
             ShadButton([Component.text('Link')], variant: ButtonVariant.link),
           ],
           classes: 'flex flex-wrap gap-3',
@@ -396,8 +395,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
             ShadNativeSelect(
               children: [
                 ShadNativeSelectOption(
-                    value: '',
-                    children: [Component.text('Select a fruit...')]),
+                    value: '', children: [Component.text('Select a fruit...')]),
                 ShadNativeSelectOption(
                     value: 'apple', children: [Component.text('Apple')]),
                 ShadNativeSelectOption(
@@ -406,8 +404,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                   label: 'Citrus',
                   children: [
                     ShadNativeSelectOption(
-                        value: 'orange',
-                        children: [Component.text('Orange')]),
+                        value: 'orange', children: [Component.text('Orange')]),
                     ShadNativeSelectOption(
                         value: 'lemon', children: [Component.text('Lemon')]),
                   ],
@@ -473,8 +470,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
             ShadField([
               ShadFieldLabel([Component.text('Bio')], htmlFor: 'bio'),
               ShadFieldContent([
-                ShadTextarea(
-                    id: 'bio', placeholder: 'Tell us about yourself'),
+                ShadTextarea(id: 'bio', placeholder: 'Tell us about yourself'),
                 ShadFieldError(['Bio must be at least 10 characters.']),
               ]),
             ]),
@@ -599,8 +595,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
             ShadAlert([
               ShadAlertTitle([Component.text('Error')]),
               ShadAlertDescription([
-                Component.text(
-                    'Your session has expired. Please log in again.')
+                Component.text('Your session has expired. Please log in again.')
               ]),
             ], variant: AlertVariant.destructive),
           ],
@@ -618,8 +613,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
             ShadTypographyH4([Component.text('Heading 4')]),
             ShadTypographyP(
                 [Component.text('This is a paragraph with leading text.')]),
-            ShadTypographyBlockquote(
-                [Component.text('This is a blockquote.')]),
+            ShadTypographyBlockquote([Component.text('This is a blockquote.')]),
             ShadTypographyCode([Component.text('inline code')]),
             ShadTypographyLead([Component.text('A lead paragraph.')]),
             ShadTypographyLarge([Component.text('Large text')]),
@@ -685,8 +679,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                       'M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'
                 }),
                 Component.element(
-                    tag: 'path',
-                    attributes: {'d': 'M14 2v4a2 2 0 0 0 2 2h4'}),
+                    tag: 'path', attributes: {'d': 'M14 2v4a2 2 0 0 0 2 2h4'}),
               ],
             ),
           ]),
@@ -813,9 +806,8 @@ class _ShowcasePageState extends State<ShowcasePage> {
                 ShadCard([
                   ShadCardHeader([
                     ShadCardTitle([Component.text('Account')]),
-                    ShadCardDescription([
-                      Component.text('Make changes to your account here.')
-                    ]),
+                    ShadCardDescription(
+                        [Component.text('Make changes to your account here.')]),
                   ]),
                   ShadCardContent([
                     div([
@@ -1161,8 +1153,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                 tag: 'a',
                 attributes: {
                   'href': '#',
-                  'class':
-                      'text-sm font-medium underline underline-offset-4',
+                  'class': 'text-sm font-medium underline underline-offset-4',
                 },
                 children: [Component.text('@nextjs')],
               ),
@@ -1241,8 +1232,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
               div(
                 [
                   p([Component.text('Drag to adjust or use buttons.')],
-                      classes:
-                          'text-center text-muted-foreground text-sm'),
+                      classes: 'text-center text-muted-foreground text-sm'),
                 ],
                 classes: 'p-4',
               ),
@@ -1366,9 +1356,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                 [Component.text('Card description goes here.')]),
           ]),
           ShadCardContent([
-            p([
-              Component.text('Card content area. Put any components here.')
-            ]),
+            p([Component.text('Card content area. Put any components here.')]),
           ]),
           ShadCardFooter([
             ShadButton([Component.text('Cancel')],
@@ -1524,8 +1512,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
           ]),
           ShadTableFooter([
             ShadTableRow([
-              ShadTableCell([Component.text('Total')],
-                  className: 'font-bold'),
+              ShadTableCell([Component.text('Total')], className: 'font-bold'),
               ShadTableCell([]),
               ShadTableCell([]),
               ShadTableCell([Component.text('\$750.00')],
@@ -1666,8 +1653,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
           type: ToggleGroupType.single,
           variant: ToggleGroupVariant.outline,
           children: [
-            ShadToggleGroupItem(
-                value: 'left', children: [Component.text('L')]),
+            ShadToggleGroupItem(value: 'left', children: [Component.text('L')]),
             ShadToggleGroupItem(
                 value: 'center', children: [Component.text('C')]),
             ShadToggleGroupItem(
@@ -1711,8 +1697,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
             ]),
             ShadInputGroup([
               ShadInputGroupAddon([Component.text('\$')]),
-              ShadInputGroupInput(
-                  placeholder: '0.00', type: InputType.number),
+              ShadInputGroupInput(placeholder: '0.00', type: InputType.number),
               ShadInputGroupAddon([Component.text('USD')],
                   align: InputGroupAddonAlign.right),
             ]),
@@ -1736,9 +1721,8 @@ class _ShowcasePageState extends State<ShowcasePage> {
               div(
                 [
                   ShadToastTitle([Component.text('Scheduled: Catch up')]),
-                  ShadToastDescription([
-                    Component.text('Friday, February 10, 2024 at 5:57 PM')
-                  ]),
+                  ShadToastDescription(
+                      [Component.text('Friday, February 10, 2024 at 5:57 PM')]),
                 ],
                 classes: 'grid gap-1',
               ),
@@ -1751,8 +1735,7 @@ class _ShowcasePageState extends State<ShowcasePage> {
                     ShadToastTitle(
                         [Component.text('Uh oh! Something went wrong.')]),
                     ShadToastDescription([
-                      Component.text(
-                          'There was a problem with your request.')
+                      Component.text('There was a problem with your request.')
                     ]),
                   ],
                   classes: 'grid gap-1',
@@ -1855,10 +1838,8 @@ class _ShowcasePageState extends State<ShowcasePage> {
     ];
 
     final chartConfig = ChartConfig({
-      'desktop':
-          ChartConfigEntry(label: 'Desktop', color: 'var(--chart-1)'),
-      'mobile':
-          ChartConfigEntry(label: 'Mobile', color: 'var(--chart-2)'),
+      'desktop': ChartConfigEntry(label: 'Desktop', color: 'var(--chart-1)'),
+      'mobile': ChartConfigEntry(label: 'Mobile', color: 'var(--chart-2)'),
     });
 
     return [
@@ -1935,8 +1916,8 @@ class _ShowcasePageState extends State<ShowcasePage> {
       _section('Pie Chart', 'Proportional data visualization', [
         ShadChartContainer(
           config: ChartConfig({
-            'visitors': ChartConfigEntry(
-                label: 'Visitors', color: 'var(--chart-1)'),
+            'visitors':
+                ChartConfigEntry(label: 'Visitors', color: 'var(--chart-1)'),
           }),
           children: [
             div(
