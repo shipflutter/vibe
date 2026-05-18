@@ -1,6 +1,7 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:universal_web/web.dart' as web;
 
+import 'pages/auth_page.dart';
 import 'pages/legal_page.dart';
 import 'pages/landing_page.dart';
 
@@ -12,6 +13,15 @@ class App extends StatelessComponent {
         ? path.substring(0, path.length - 1)
         : path;
 
+    if (normalized.endsWith('/login')) {
+      return const LoginPage();
+    }
+    if (normalized.endsWith('/signup')) {
+      return const SignupPage();
+    }
+    if (normalized.endsWith('/forgot-password')) {
+      return const ForgotPasswordPage();
+    }
     if (normalized.endsWith('/privacy')) {
       return const PrivacyPage();
     }

@@ -162,7 +162,7 @@ class Pricing extends StatelessComponent {
         [Component.text(cta)],
         variant: variant,
         className:
-            'w-full rounded-full !px-5 !py-2.5 min-h-10 text-sm sm:text-base',
+            'w-full rounded-full !px-5 !py-2.5 min-h-10 text-sm sm:text-base ${isPopular ? 'bg-black text-white hover:bg-zinc-800 shadow-lg shadow-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-200 dark:shadow-none' : ''}',
         onPressed: () {},
       ),
     ],
