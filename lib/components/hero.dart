@@ -29,7 +29,7 @@ class Hero extends StatelessComponent {
               [Component.text('One command. Works everywhere.')],
               variant: BadgeVariant.secondary,
               className:
-                  'mb-5 sm:mb-6 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-100 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-900 text-[10px] sm:text-xs font-semibold tracking-wider uppercase',
+                  'mb-5 sm:mb-6 px-3 py-1 rounded-full bg-primary/5 text-primary border border-primary/10 dark:bg-white/10 dark:text-white dark:border-white/10 text-[10px] sm:text-xs font-semibold tracking-wider uppercase',
             ),
             h1(
               [
@@ -99,7 +99,7 @@ class Hero extends StatelessComponent {
                     ),
                   ],
                   classes:
-                      'flex items-center justify-between rounded-xl border border-blue-100 bg-white p-3 sm:p-4 font-mono text-[11px] sm:text-sm shadow-lg shadow-blue-100/60 backdrop-blur overflow-hidden dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none',
+                      'flex items-center justify-between rounded-xl border border-primary/10 bg-white p-3 sm:p-4 font-mono text-[11px] sm:text-sm shadow-lg shadow-zinc-200/60 backdrop-blur overflow-hidden dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-none',
                 ),
                 div([
                   Component.text(
@@ -117,7 +117,7 @@ class Hero extends StatelessComponent {
                   [Component.text('Get Started Free')],
                   size: ButtonSize.lg,
                   className:
-                      'w-full sm:w-auto rounded-full !px-7 !py-3.5 min-h-12 text-base bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-200 dark:shadow-none',
+                      'w-full sm:w-auto rounded-full !px-7 !py-3.5 min-h-12 text-base bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-zinc-200 dark:shadow-none',
                   onPressed: () {},
                 ),
                 ShadButton(
@@ -125,7 +125,7 @@ class Hero extends StatelessComponent {
                   variant: ButtonVariant.outline,
                   size: ButtonSize.lg,
                   className:
-                      'w-full sm:w-auto rounded-full !px-7 !py-3.5 min-h-12 text-base border-blue-200 bg-white hover:bg-blue-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800',
+                      'w-full sm:w-auto rounded-full !px-7 !py-3.5 min-h-12 text-base border-primary/20 bg-white hover:bg-primary/5 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800',
                   onPressed: () {},
                 ),
               ],

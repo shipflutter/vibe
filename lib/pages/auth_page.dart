@@ -69,7 +69,7 @@ class AuthPage extends StatelessComponent {
                       classes:
                           'mt-3 text-center text-sm leading-6 text-muted-foreground sm:text-base'),
                 ],
-                classes: 'mb-8',
+                classes: 'mb-5 sm:mb-8',
               ),
               ShadCard(
                 [
@@ -99,10 +99,10 @@ class AuthPage extends StatelessComponent {
                           ),
                           if (legal != null) legal!,
                         ],
-                        classes: 'grid gap-5',
+                        classes: 'grid gap-4 sm:gap-5',
                       ),
                     ],
-                    className: 'p-6 sm:p-8',
+                    className: 'p-5 sm:p-8',
                   ),
                 ],
                 className:
@@ -116,18 +116,19 @@ class AuthPage extends StatelessComponent {
                       classes:
                           'font-semibold text-foreground underline-offset-4 hover:underline'),
                 ],
-                classes: 'mt-6 text-center text-sm text-muted-foreground',
+                classes:
+                    'mt-4 text-center text-sm text-muted-foreground sm:mt-6',
               ),
             ],
             classes: 'w-full max-w-md px-4',
           ),
         ],
             classes:
-                'flex min-h-screen items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(24,24,27,0.08),_transparent_34%),linear-gradient(180deg,_#ffffff_0%,_#fafafa_100%)] py-24 dark:bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_34%),linear-gradient(180deg,_#000000_0%,_#000000_100%)]'),
-        Footer(),
+                'flex h-dvh items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(24,24,27,0.08),_transparent_34%),linear-gradient(180deg,_#ffffff_0%,_#fafafa_100%)] px-0 py-16 dark:bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_34%),linear-gradient(180deg,_#000000_0%,_#000000_100%)] sm:min-h-screen sm:py-24'),
+        div([Footer()], classes: 'hidden sm:block'),
       ],
       classes:
-          'relative min-h-screen bg-white text-foreground font-sans selection:bg-primary/20 dark:bg-black',
+          'relative h-dvh overflow-hidden bg-white text-foreground font-sans selection:bg-primary/20 dark:bg-black sm:min-h-screen sm:h-auto sm:overflow-visible',
     );
   }
 }

@@ -176,28 +176,11 @@ class _HeaderState extends State<Header> {
           [
             div(
               [
-                div(
-                  [
-                    a(
-                      [Component.text('Login')],
-                      href: '/login',
-                      classes:
-                          'text-sm font-medium text-neutral-600 dark:text-neutral-400',
-                    ),
-                    a(
-                      [Component.text('Sign up')],
-                      href: '/signup',
-                      classes:
-                          'text-sm font-medium text-neutral-600 dark:text-neutral-400',
-                    ),
-                    a(
-                      [Component.text('Forgot')],
-                      href: '/forgot-password',
-                      classes:
-                          'text-sm font-medium text-neutral-600 dark:text-neutral-400',
-                    ),
-                  ],
-                  classes: 'flex items-center gap-4',
+                a(
+                  [Component.text('Login')],
+                  href: '/login',
+                  classes:
+                      'text-sm font-medium text-neutral-600 dark:text-neutral-400',
                 ),
                 ShadButton(
                   [_themeIcon()],

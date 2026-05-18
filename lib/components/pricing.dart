@@ -27,51 +27,50 @@ class Pricing extends StatelessComponent {
               ],
               classes: 'flex flex-col items-center text-center mb-12 sm:mb-16',
             ),
-            div(
-              [
-                _pricingCard(
-                  'Free',
-                  '\$0',
-                  'Open-source components for everyone.',
-                  [
-                    '100+ UI Components',
-                    '60+ Animation Components',
-                    'MIT License'
-                  ],
-                  'Get Started',
-                  variant: ButtonVariant.outline,
-                ),
-                _pricingCard(
-                  'Pro',
-                  '\$89',
-                  'Lifetime access, one-time payment.',
-                  [
-                    'All Free features',
-                    '30+ Full-Stack Modules',
-                    'Deployment Guides',
-                    'Compliance Templates',
-                    'All Future Pro Recipes'
-                  ],
-                  'Get Lifetime Access',
-                  isPopular: true,
-                ),
-                _pricingCard(
-                  'Max',
-                  '\$200',
-                  'Monthly managed service & hosting.',
-                  [
-                    'Everything in Pro',
-                    'Consulting & Coaching',
-                    'App Store Hosting',
-                    'AWS Hosting & Ops',
-                    'Founder Slack Access'
-                  ],
-                  'Subscribe to Max',
-                  priceSuffix: '/mo',
-                ),
-              ],
-              classes: 'grid gap-6 sm:gap-8 lg:grid-cols-3 mb-16 px-4 sm:px-0',
-            ),
+            div([
+              _pricingCard(
+                'Free',
+                '\$0',
+                'Open-source components for everyone.',
+                [
+                  '100+ UI Components',
+                  '60+ Animation Components',
+                  'MIT License'
+                ],
+                'Get Started',
+                variant: ButtonVariant.outline,
+              ),
+              _pricingCard(
+                'Pro',
+                '\$89',
+                'Lifetime access, one-time payment.',
+                [
+                  'All Free features',
+                  '30+ Full-Stack Modules',
+                  'Deployment Guides',
+                  'Compliance Templates',
+                  'All Future Pro Recipes'
+                ],
+                'Get Lifetime Access',
+                isPopular: true,
+              ),
+              _pricingCard(
+                'Max',
+                '\$200',
+                'Monthly managed service & hosting.',
+                [
+                  'Everything in Pro',
+                  'Consulting & Coaching',
+                  'App Store Hosting',
+                  'AWS Hosting & Ops',
+                  'Founder Slack Access'
+                ],
+                'Subscribe to Max',
+                priceSuffix: '/mo',
+              ),
+            ],
+                classes:
+                    'mx-auto grid max-w-5xl gap-5 lg:grid-cols-3 mb-14 px-4 sm:px-0'),
 
             // Founder Services
             div(
@@ -112,10 +111,10 @@ class Pricing extends StatelessComponent {
       div(
         [
           h3([Component.text(name)],
-              classes: 'font-bold text-xl sm:text-2xl mb-2'),
+              classes: 'font-bold text-lg sm:text-xl mb-2'),
           div([
             span([Component.text(price)],
-                classes: 'text-3xl sm:text-4xl font-extrabold'),
+                classes: 'text-2xl sm:text-3xl font-extrabold'),
             if (priceSuffix.isNotEmpty)
               span([Component.text(priceSuffix)],
                   classes: 'text-sm sm:text-base text-muted-foreground'),
@@ -123,15 +122,15 @@ class Pricing extends StatelessComponent {
           p([Component.text(desc)],
               classes: 'text-xs sm:text-sm text-muted-foreground'),
         ],
-        classes: 'mb-6 sm:mb-8',
+        classes: 'mb-5 sm:mb-6',
       ),
       Component.element(
         tag: 'ul',
-        attributes: {'class': 'mb-6 sm:mb-8 space-y-3 sm:space-y-4 flex-1'},
+        attributes: {'class': 'mb-5 sm:mb-6 space-y-2.5 sm:space-y-3 flex-1'},
         children: [
           for (var feature in features)
             Component.element(tag: 'li', attributes: {
-              'class': 'flex items-center gap-2 sm:gap-3 text-xs sm:text-sm'
+              'class': 'flex items-center gap-2 text-xs sm:text-sm'
             }, children: [
               div([
                 Component.element(
@@ -162,11 +161,11 @@ class Pricing extends StatelessComponent {
         [Component.text(cta)],
         variant: variant,
         className:
-            'w-full rounded-full !px-5 !py-2.5 min-h-10 text-sm sm:text-base ${isPopular ? 'bg-black text-white hover:bg-zinc-800 shadow-lg shadow-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-200 dark:shadow-none' : ''}',
+            'w-full rounded-full !px-4 !py-2 min-h-9 text-sm ${isPopular ? 'bg-black text-white hover:bg-zinc-800 shadow-lg shadow-zinc-200 dark:bg-white dark:text-black dark:hover:bg-zinc-200 dark:shadow-none' : ''}',
         onPressed: () {},
       ),
     ],
         className:
-            'relative flex flex-col p-6 sm:p-8 ${isPopular ? 'border-primary shadow-xl dark:shadow-none dark:border-primary/70 scale-100 sm:scale-105 z-10' : 'bg-background'}');
+            'relative flex flex-col p-5 sm:p-6 ${isPopular ? 'border-primary shadow-xl dark:shadow-none dark:border-primary/70 scale-100 sm:scale-[1.03] z-10' : 'bg-background'}');
   }
 }

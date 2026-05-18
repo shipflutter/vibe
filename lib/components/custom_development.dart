@@ -52,7 +52,7 @@ class CustomDevelopment extends StatelessComponent {
                     'UX flow recommendations',
                     'Architecture review',
                   ],
-                  cta: 'Start planning',
+                  cta: 'Email us',
                 ),
                 _serviceCard(
                   title: 'Build',
@@ -78,11 +78,11 @@ class CustomDevelopment extends StatelessComponent {
                     'Monitoring and analytics',
                     'AI/API integrations',
                   ],
-                  cta: 'Talk to us',
+                  cta: 'Email us',
                 ),
               ],
               classes:
-                  'mx-auto grid max-w-5xl items-center gap-5 lg:grid-cols-3 lg:gap-6',
+                  'mx-auto grid max-w-6xl items-center gap-5 lg:grid-cols-3 lg:gap-6',
             ),
           ],
           classes: 'container mx-auto px-4 md:px-8',
@@ -121,6 +121,13 @@ class CustomDevelopment extends StatelessComponent {
                 p([Component.text(description)],
                     classes:
                         'mt-3 min-h-16 text-sm leading-6 text-muted-foreground'),
+                ShadButton(
+                  [Component.text(cta)],
+                  variant: isPopular ? null : ButtonVariant.outline,
+                  className:
+                      'mt-6 w-full rounded-full !px-5 !py-2.5 text-sm font-semibold ${isPopular ? 'bg-black text-white shadow-lg shadow-zinc-200 hover:bg-zinc-800 dark:bg-white dark:text-black dark:shadow-none dark:hover:bg-zinc-200' : 'border-zinc-200 bg-white text-black hover:bg-zinc-50 dark:border-zinc-800 dark:bg-black dark:text-white dark:hover:bg-zinc-900'}',
+                  onPressed: () {},
+                ),
               ],
             ),
             Component.element(
@@ -140,18 +147,12 @@ class CustomDevelopment extends StatelessComponent {
                   ),
               ],
             ),
-            ShadButton(
-              [Component.text(cta)],
-              className:
-                  'mt-6 w-full rounded-full !px-5 !py-2.5 text-sm font-semibold ${isPopular ? 'bg-black text-white shadow-lg shadow-zinc-200 hover:bg-zinc-800 dark:bg-white dark:text-black dark:shadow-none dark:hover:bg-zinc-200' : 'bg-white text-foreground border border-zinc-200 hover:bg-zinc-50 dark:bg-black dark:border-zinc-800 dark:hover:bg-zinc-900'}',
-              onPressed: () {},
-            ),
           ],
-          className: 'flex h-full flex-col p-5 sm:p-6',
+          className: 'flex h-full flex-col p-6 sm:p-7',
         ),
       ],
       className:
-          'relative flex h-full max-h-[420px] flex-col bg-white/90 dark:bg-zinc-950/90 ${isPopular ? 'z-10 border border-black shadow-2xl shadow-zinc-200/70 dark:border-white dark:shadow-none lg:scale-[1.02]' : 'border-zinc-200 shadow-sm dark:border-zinc-800'}',
+          'relative flex h-full max-h-[460px] flex-col bg-white/90 dark:bg-zinc-950/90 ${isPopular ? 'z-10 border border-black shadow-2xl shadow-zinc-200/70 dark:border-white dark:shadow-none lg:scale-[1.02]' : 'border-zinc-200 shadow-sm dark:border-zinc-800'}',
     );
   }
 

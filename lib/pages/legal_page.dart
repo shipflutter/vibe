@@ -23,7 +23,7 @@ class LegalPage extends StatelessComponent {
           tag: 'header',
           attributes: {
             'class':
-                'sticky top-0 z-50 w-full border-b border-blue-100/80 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/75 dark:border-zinc-800 dark:bg-black/90 dark:supports-[backdrop-filter]:bg-black/75'
+                'sticky top-0 z-50 w-full border-b border-primary/10 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/75 dark:border-zinc-800 dark:bg-black/90 dark:supports-[backdrop-filter]:bg-black/75'
           },
           children: [
             div(
