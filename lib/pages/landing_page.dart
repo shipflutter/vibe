@@ -6,6 +6,7 @@ import '../components/hero.dart';
 import '../components/logo_marquee.dart';
 import '../components/features.dart';
 import '../components/showcase.dart';
+import '../components/custom_development.dart';
 import '../components/pricing.dart';
 import '../components/faq.dart';
 import '../components/footer.dart';
@@ -61,6 +62,7 @@ class _LandingPageState extends State<LandingPage> {
             LogoMarquee(),
             Features(),
             Showcase(),
+            CustomDevelopment(),
             Pricing(),
             FAQ(),
           ],
