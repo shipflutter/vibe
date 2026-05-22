@@ -1,0 +1,1354 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Requirements Specification</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --color-primary: #FCD535;
+      --color-canvas: #ffffff;
+      --color-surface: #fafafa;
+      --color-surface-strong: #f3f3f5;
+      --color-ink: #181a20;
+      --color-muted: #707a8a;
+      --color-hairline: #eaecef;
+      --color-link: #2563eb;
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-ink);
+      background: var(--color-surface);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+    aside {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--color-canvas);
+      border-right: 1px solid var(--color-hairline);
+      padding: 24px 16px;
+    }
+    aside h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin: 0 0 12px;
+      letter-spacing: .03em;
+      border: 0;
+      padding: 0;
+    }
+    aside nav ol, aside nav ul { list-style: none; padding: 0; margin: 0; }
+    aside nav .toc-h2 > a {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--color-ink);
+      display: block;
+      padding: 6px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    aside nav .toc-h2 > a:hover { background: var(--color-surface); }
+    aside nav .toc-h2.active > a { background: var(--color-primary); color: var(--color-ink); }
+    aside nav .toc-h3 {
+      padding-left: 18px;
+      border-left: 2px solid var(--color-hairline);
+      margin-left: 10px;
+    }
+    aside nav .toc-h3 a {
+      display: block;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: var(--color-muted);
+      border-radius: 4px;
+      text-decoration: none;
+      line-height: 1.4;
+    }
+    aside nav .toc-h3 a:hover { background: var(--color-surface); color: var(--color-ink); }
+    aside nav .toc-h3 a.active { color: var(--color-ink); font-weight: 600; background: var(--color-surface); }
+    aside nav .toc-h2.collapsed .toc-h3 { display: none; }
+    aside nav .toggle {
+      cursor: pointer;
+      user-select: none;
+      color: var(--color-muted);
+      margin-right: 4px;
+      display: inline-block;
+      width: 12px;
+      transition: transform .15s;
+    }
+    aside nav .toc-h2.collapsed .toggle { transform: rotate(-90deg); }
+    main { padding: 40px 60px; max-width: 1100px; }
+    main h1 { font-size: 32px; border-bottom: 2px solid var(--color-ink); padding-bottom: 12px; }
+    main h2 { font-size: 24px; margin-top: 40px; border-bottom: 1px solid var(--color-hairline); padding-bottom: 6px; }
+    main h3 { font-size: 18px; margin-top: 28px; color: var(--color-ink); }
+    main h4 { font-size: 16px; margin-top: 20px; }
+    main p, main li { font-size: 14px; }
+    main code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: var(--color-surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    main pre {
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    main pre.mermaid {
+      background: var(--color-canvas);
+      text-align: center;
+      color: var(--color-ink);
+      white-space: pre;
+    }
+    main .mermaid svg { max-width: 100%; }
+    main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 13px; }
+    main th, main td { border: 1px solid var(--color-hairline); padding: 8px 12px; text-align: left; vertical-align: top; }
+    main th { background: var(--color-surface); font-weight: 600; }
+    main a { color: var(--color-link); text-decoration: none; }
+    main a:hover { text-decoration: underline; }
+    main hr { border: none; border-top: 1px solid var(--color-hairline); margin: 32px 0; }
+    main blockquote {
+      border-left: 4px solid var(--color-primary);
+      margin: 16px 0;
+      padding: 8px 16px;
+      background: var(--color-surface);
+      color: var(--color-muted);
+    }
+    .meta { color: var(--color-muted); font-size: 13px; margin-bottom: 24px; }
+    footer {
+      padding: 24px 60px;
+      border-top: 1px solid var(--color-hairline);
+      color: var(--color-muted);
+      font-size: 13px;
+      background: var(--color-canvas);
+    }
+    footer code { font-family: var(--font-mono); background: var(--color-surface); padding: 2px 6px; border-radius: 4px; }
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      aside {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--color-hairline);
+      }
+      main { padding: 24px; }
+      footer { padding: 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h2>FightTech SSH</h2>
+      <div class="meta">SRS Package · 2026-05-22</div>
+      <nav><ol id="toc"></ol></nav>
+    </aside>
+    <main id="content">
+<h1>Software Requirements Specification — FightTech SSH</h1>
+<blockquote>Source package: <code>resources/tdd.md</code>, <code>resources/user-story/*.md</code>, <code>resources/technial-design/*.md</code>, <code>lib/presentation/</code>, <code>integration_test/</code>, <code>e2e/</code>.</blockquote>
+<blockquote>This SRS follows the reviewed export-package structure: included docs, requirements, user stories, use cases, screens, flows, states, entities, risks, and traceability.</blockquote>
+<h2>1. Executive Summary</h2>
+<p>FightTech SSH is a Flutter SSH client for saving server connections, opening interactive SSH terminals, browsing remote files over SFTP, discovering LAN SSH servers, pairing desktop and mobile clients, and sharing/importing connection profiles through JSON and QR payloads.</p>
+<p>The SRS scope is the existing presentation feature set under <code>lib/presentation</code>. The document consolidates EP01 through EP09 from the current <code>resources/</code> folder into a single SRS package.</p>
+<h2>2. Included Documents</h2>
+<table><tbody>
+<tr>
+<th>Category</th>
+<th>Source</th>
+<th>Purpose</th>
+</tr>
+<tr>
+<td>Epic backlog</td>
+<td><code>resources/tdd.md</code></td>
+<td>Master epic-to-user-story outline</td>
+</tr>
+<tr>
+<td>User stories</td>
+<td><code>resources/user-story/ep01..ep09*.md</code></td>
+<td>Actor goals and acceptance criteria</td>
+</tr>
+<tr>
+<td>Technical design</td>
+<td><code>resources/technial-design/ep01..ep09*.md</code></td>
+<td>Entry points, flows, entities, validation, security notes</td>
+</tr>
+<tr>
+<td>Presentation code</td>
+<td><code>lib/presentation/</code></td>
+<td>Flutter UI, blocs, widgets, payload helpers, stores</td>
+</tr>
+<tr>
+<td>Test package</td>
+<td><code>test/</code>, <code>integration_test/</code>, <code>e2e/</code></td>
+<td>Unit, widget, integration, and screenshot e2e verification</td>
+</tr>
+<tr>
+<td>SRS renderer</td>
+<td><code>resources/srs.sh</code></td>
+<td>Generates <code>srs-index.html</code> from this Markdown file</td>
+</tr>
+</tbody></table>
+<h2>3. Requirements Summary</h2>
+<table><tbody>
+<tr>
+<th>ID</th>
+<th>Epic</th>
+<th>Requirement summary</th>
+<th>Priority</th>
+<th>Primary UI</th>
+</tr>
+<tr>
+<td>FR-EP01</td>
+<td>SSH Terminal</td>
+<td>Open interactive SSH shell, manage terminal tabs, send commands and special keys, copy/clear output, recover from errors, switch to SFTP.</td>
+<td>P0</td>
+<td><code>SSHTerminalScreen</code></td>
+</tr>
+<tr>
+<td>FR-EP02</td>
+<td>SFTP File Browser</td>
+<td>Browse remote files, navigate paths, show metadata, upload/download, manage files/folders, show empty/error/progress states.</td>
+<td>P0</td>
+<td><code>SFTPBrowserScreen</code></td>
+</tr>
+<tr>
+<td>FR-EP03</td>
+<td>Connection Management</td>
+<td>Load saved connections, add/edit/delete, validate forms, configure auth, quick-connect SSH/SFTP, export/import JSON.</td>
+<td>P0</td>
+<td><code>HomeScreen</code>, <code>ConnectionFormPage</code></td>
+</tr>
+<tr>
+<td>FR-EP04</td>
+<td>Local Network Scanner</td>
+<td>Start LAN scan, show scanning/results/empty/error states, retry, manually fallback, prefill New Connection from result.</td>
+<td>P0</td>
+<td><code>NetworkScannerScreen</code></td>
+</tr>
+<tr>
+<td>FR-EP05</td>
+<td>Desktop Server &amp; Mobile Pairing</td>
+<td>Start desktop pairing server, generate QR, mobile scan/manual URL, secure handshake, active sessions.</td>
+<td>P0</td>
+<td><code>PairingServerScreen</code>, <code>PairingClientScreen</code></td>
+</tr>
+<tr>
+<td>FR-EP06</td>
+<td>Desktop SSH QR Profiles</td>
+<td>Auto-fill desktop IP/user, create QR profile, persist history, show/edit/delete profile, stable QR dialog.</td>
+<td>P0</td>
+<td><code>DesktopConnectionQrScreen</code></td>
+</tr>
+<tr>
+<td>FR-EP07</td>
+<td>Mobile SSH QR Import</td>
+<td>Scan/paste QR, parse payload, review imported card, open prefilled New Connection, save/connect.</td>
+<td>P0</td>
+<td><code>MobileSshQrImportScreen</code></td>
+</tr>
+<tr>
+<td>FR-EP08</td>
+<td>Connection Export</td>
+<td>Export saved connection JSON, save/copy/share, generate QR, warn on sensitive credentials.</td>
+<td>P0</td>
+<td>Home export menu/dialog</td>
+</tr>
+<tr>
+<td>FR-EP09</td>
+<td>New Connection JSON Import</td>
+<td>Import JSON, validate EP08/model payload, prefill form, review/edit, save through existing flow.</td>
+<td>P0</td>
+<td><code>ConnectionFormPage</code></td>
+</tr>
+</tbody></table>
+<h2>4. User Stories &amp; Acceptance Criteria</h2>
+<h3>EP01 — SSH Terminal</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP01.US001</td>
+<td>Start interactive SSH terminal</td>
+<td>SSH quick-connect opens terminal, shows selected connection, connects via <code>SshBloc</code>, disables input until ready.</td>
+</tr>
+<tr>
+<td>EP01.US002</td>
+<td>Multi-tab terminal sessions</td>
+<td>User can add, switch, and close tabs without breaking remaining sessions.</td>
+</tr>
+<tr>
+<td>EP01.US003</td>
+<td>Send terminal input and special keys</td>
+<td>Input row sends commands; Tab/Ctrl/Esc/arrows are available and disabled when disconnected.</td>
+</tr>
+<tr>
+<td>EP01.US004</td>
+<td>Resize terminal cleanly</td>
+<td>Output expands, input/special keys stay visible, no overflow on supported surface.</td>
+</tr>
+<tr>
+<td>EP01.US005</td>
+<td>Copy and clear output</td>
+<td>Copy writes visible output to clipboard; clear resets current tab without disconnecting.</td>
+</tr>
+<tr>
+<td>EP01.US006</td>
+<td>Switch between terminal and SFTP</td>
+<td>Terminal exposes SFTP navigation for the same connection.</td>
+</tr>
+<tr>
+<td>EP01.US007</td>
+<td>Error state and retry</td>
+<td>Error state shows message and retry reconnect action.</td>
+</tr>
+</tbody></table>
+<h3>EP02 — SFTP File Browser</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP02.US001</td>
+<td>Browse remote files</td>
+<td>Shows connection name, current path, files, and directories; folders open on tap.</td>
+</tr>
+<tr>
+<td>EP02.US002</td>
+<td>Navigate with path bar</td>
+<td>Breadcrumb/root/up controls navigate remote paths.</td>
+</tr>
+<tr>
+<td>EP02.US003</td>
+<td>View file metadata</td>
+<td>Rows show size, permissions, modified time, and hidden-file indicators when visible.</td>
+</tr>
+<tr>
+<td>EP02.US004</td>
+<td>Upload and download files</td>
+<td>Transfer actions exist and progress is visible until completion.</td>
+</tr>
+<tr>
+<td>EP02.US005</td>
+<td>Manage files and folders</td>
+<td>Create folder, rename, delete with confirmation, and refresh after success.</td>
+</tr>
+<tr>
+<td>EP02.US006</td>
+<td>Empty and error states</td>
+<td>Empty and error states are distinct and retry reloads current path.</td>
+</tr>
+<tr>
+<td>EP02.US007</td>
+<td>Transfer cancellation</td>
+<td>In-progress transfer has cancel action and leaves browser usable.</td>
+</tr>
+</tbody></table>
+<h3>EP03 — Connection Management</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP03.US001</td>
+<td>View saved connections</td>
+<td>Home loads via <code>ConnectionBloc</code>, shows connection details, loading, and empty states.</td>
+</tr>
+<tr>
+<td>EP03.US002</td>
+<td>Add a new connection</td>
+<td>New form includes name/host/port/user, defaults port to 22, validates and saves.</td>
+</tr>
+<tr>
+<td>EP03.US003</td>
+<td>Configure authentication</td>
+<td>Password/private key modes persist selected auth data.</td>
+</tr>
+<tr>
+<td>EP03.US004</td>
+<td>Edit an existing connection</td>
+<td>Edit opens prefilled and updates the existing id; import-only actions stay hidden.</td>
+</tr>
+<tr>
+<td>EP03.US005</td>
+<td>Delete a connection</td>
+<td>Confirmation required; confirm deletes and refreshes Home.</td>
+</tr>
+<tr>
+<td>EP03.US006</td>
+<td>Quick-connect to SSH or SFTP</td>
+<td>Saved connection exposes SSH and SFTP actions.</td>
+</tr>
+<tr>
+<td>EP03.US007</td>
+<td>Export and import connection data</td>
+<td>Export/import use <code>ft-ssh-connection</code> payload and do not log secrets.</td>
+</tr>
+</tbody></table>
+<h3>EP04 — Local Network Scanner</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP04.US001</td>
+<td>Scan local network from home</td>
+<td>Home exposes <code>Scan Local Network</code>; scanner opens and starts automatically.</td>
+</tr>
+<tr>
+<td>EP04.US002</td>
+<td>Display discovered SSH servers</td>
+<td>Results show count, IP, port, online badge, and banner when available.</td>
+</tr>
+<tr>
+<td>EP04.US003</td>
+<td>Prefill New Connection from scanned server</td>
+<td>Tap result opens New Connection with name/host/port prefilled.</td>
+</tr>
+<tr>
+<td>EP04.US004</td>
+<td>Manual fallback</td>
+<td>Empty state offers manual host/port entry and prefilled New Connection.</td>
+</tr>
+<tr>
+<td>EP04.US005</td>
+<td>Retry scan</td>
+<td>Empty/error/app bar scan-again actions retry scanning.</td>
+</tr>
+</tbody></table>
+<h3>EP05 — Desktop Server &amp; Mobile Pairing</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP05.US001</td>
+<td>Start desktop pairing server</td>
+<td>Desktop starts HTTP/WebSocket pairing server and shows running status.</td>
+</tr>
+<tr>
+<td>EP05.US002</td>
+<td>Show pairing QR code</td>
+<td>QR encodes IP, port, and security token.</td>
+</tr>
+<tr>
+<td>EP05.US003</td>
+<td>Mobile scan pairing QR</td>
+<td>Mobile scans or manually enters URL to configure pairing.</td>
+</tr>
+<tr>
+<td>EP05.US004</td>
+<td>Display active sessions</td>
+<td>Desktop lists paired device name, platform, IP, and connected time.</td>
+</tr>
+</tbody></table>
+<h3>EP06 — Desktop SSH QR Profiles</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP06.US001</td>
+<td>Auto-fill desktop connection information</td>
+<td>Form can initialize local IP and username.</td>
+</tr>
+<tr>
+<td>EP06.US002</td>
+<td>Create SSH QR profile</td>
+<td>Host/port/user/auth data creates QR payload and dialog.</td>
+</tr>
+<tr>
+<td>EP06.US003</td>
+<td>Save profiles locally</td>
+<td>Profiles persist and reload through local store.</td>
+</tr>
+<tr>
+<td>EP06.US004</td>
+<td>Manage QR profile history</td>
+<td>History supports show QR, edit, delete.</td>
+</tr>
+<tr>
+<td>EP06.US005</td>
+<td>Show QR safely in dialog layout</td>
+<td>Dialog remains bounded and readable.</td>
+</tr>
+</tbody></table>
+<h3>EP07 — Mobile SSH QR Import</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP07.US001</td>
+<td>Scan Desktop SSH QR</td>
+<td>Camera scan or pasted payload is accepted.</td>
+</tr>
+<tr>
+<td>EP07.US002</td>
+<td>Parse SSH connection payload</td>
+<td>Parser validates type/version/host/port/user/auth.</td>
+</tr>
+<tr>
+<td>EP07.US003</td>
+<td>Open New Connection with scanned data</td>
+<td>Edit-before-save opens form prefilled from payload.</td>
+</tr>
+<tr>
+<td>EP07.US004</td>
+<td>Save imported connection</td>
+<td>Save dispatches existing connection save flow.</td>
+</tr>
+<tr>
+<td>EP07.US005</td>
+<td>Connect after QR import</td>
+<td>Terminal/SFTP actions connect using imported connection.</td>
+</tr>
+<tr>
+<td>EP07.US006</td>
+<td>Protect users from unsafe QR credentials</td>
+<td>Password-bearing payloads are treated as trusted-local sensitive data.</td>
+</tr>
+</tbody></table>
+<h3>EP08 — Connection Export</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP08.US001</td>
+<td>Export saved connection as JSON</td>
+<td>Saved connection menu exposes export and creates <code>ft-ssh-connection</code> JSON.</td>
+</tr>
+<tr>
+<td>EP08.US002</td>
+<td>Save exported JSON to a file</td>
+<td>Export can be saved with sanitized filename.</td>
+</tr>
+<tr>
+<td>EP08.US003</td>
+<td>Generate QR code for mobile import</td>
+<td>Export dialog can show QR with bounded layout.</td>
+</tr>
+<tr>
+<td>EP08.US004</td>
+<td>Copy exported JSON</td>
+<td>Copy writes export JSON to clipboard and shows feedback.</td>
+</tr>
+<tr>
+<td>EP08.US005</td>
+<td>Share exported JSON</td>
+<td>Share sheet receives valid export payload.</td>
+</tr>
+<tr>
+<td>EP08.US006</td>
+<td>Warn about sensitive exported credentials</td>
+<td>UI warns when payload contains password/private key.</td>
+</tr>
+</tbody></table>
+<h3>EP09 — New Connection JSON Import</h3>
+<table><tbody>
+<tr>
+<th>Story</th>
+<th>Title</th>
+<th>Acceptance summary</th>
+</tr>
+<tr>
+<td>EP09.US001</td>
+<td>Import connection JSON from New Connection</td>
+<td>Create mode shows import action and cancellation preserves form.</td>
+</tr>
+<tr>
+<td>EP09.US002</td>
+<td>Validate imported connection JSON</td>
+<td>Rejects invalid JSON/type/version/host/user/port/auth.</td>
+</tr>
+<tr>
+<td>EP09.US003</td>
+<td>Support EP08 export payload</td>
+<td>Maps password/private key auth into form fields.</td>
+</tr>
+<tr>
+<td>EP09.US004</td>
+<td>Prefill and review before saving</td>
+<td>Form fields populate and remain editable.</td>
+</tr>
+<tr>
+<td>EP09.US005</td>
+<td>Save imported connection through existing flow</td>
+<td>Uses <code>ConnectionSaveRequested</code>, validation, and snackbar behavior.</td>
+</tr>
+<tr>
+<td>EP09.US006</td>
+<td>Preview import flow with e2e screenshots</td>
+<td>EP09 script/report/screenshots document visual flow.</td>
+</tr>
+</tbody></table>
+<h2>5. Use Cases</h2>
+<table><tbody>
+<tr>
+<th>Use case</th>
+<th>Actor</th>
+<th>Preconditions</th>
+<th>Success path</th>
+<th>Alternate/error paths</th>
+</tr>
+<tr>
+<td>UC-01 Open SSH terminal</td>
+<td>Saved connection user</td>
+<td>At least one saved connection</td>
+<td>Select SSH, connect, stream output, send input/special keys</td>
+<td>Connection error shows retry</td>
+</tr>
+<tr>
+<td>UC-02 Browse SFTP</td>
+<td>Saved connection user</td>
+<td>Connection can authenticate</td>
+<td>Select SFTP, list remote path, navigate folders, transfer files</td>
+<td>Empty/error states and retry</td>
+</tr>
+<tr>
+<td>UC-03 Manage connection</td>
+<td>Connection owner</td>
+<td>App installed with local storage</td>
+<td>Create/edit/delete saved connection and quick-connect</td>
+<td>Validation blocks invalid form</td>
+</tr>
+<tr>
+<td>UC-04 Scan LAN for SSH</td>
+<td>Mobile user</td>
+<td>Same LAN as SSH hosts</td>
+<td>Start scan, choose result, open prefilled form</td>
+<td>No result/manual fallback/error retry</td>
+</tr>
+<tr>
+<td>UC-05 Pair desktop and mobile</td>
+<td>Desktop/mobile user</td>
+<td>Devices share LAN</td>
+<td>Start server, scan QR, pair session</td>
+<td>Invalid URL/token/server error</td>
+</tr>
+<tr>
+<td>UC-06 Share desktop SSH QR</td>
+<td>Desktop/mobile user</td>
+<td>Desktop can create QR payload</td>
+<td>Create QR, scan/paste on mobile, review, save/connect</td>
+<td>Invalid payload and secret warning</td>
+</tr>
+<tr>
+<td>UC-07 Export/import JSON</td>
+<td>Connection owner</td>
+<td>Saved connection exists</td>
+<td>Export JSON/QR, import into New Connection, review, save</td>
+<td>Invalid payload rejected</td>
+</tr>
+</tbody></table>
+<h2>6. Screens / UI Surfaces</h2>
+<table><tbody>
+<tr>
+<th>Screen</th>
+<th>Source</th>
+<th>Purpose</th>
+<th>Main states</th>
+</tr>
+<tr>
+<td>Home</td>
+<td><code>lib/presentation/home</code></td>
+<td>Saved connections and entry points</td>
+<td>Loading, empty, list</td>
+</tr>
+<tr>
+<td>Connection Form</td>
+<td><code>lib/presentation/connection/connection_form_page.dart</code></td>
+<td>Create/edit/review imported connection</td>
+<td>Create, edit, validation, importing</td>
+</tr>
+<tr>
+<td>SSH Terminal</td>
+<td><code>lib/presentation/ssh</code></td>
+<td>Interactive shell</td>
+<td>Connecting, connected, output, error</td>
+</tr>
+<tr>
+<td>SFTP Browser</td>
+<td><code>lib/presentation/sftp_browser</code></td>
+<td>Remote files and transfer workflow</td>
+<td>Loading, list, empty, error, progress</td>
+</tr>
+<tr>
+<td>Network Scanner</td>
+<td><code>lib/presentation/network_scanner</code></td>
+<td>Local SSH discovery</td>
+<td>Scanning, results, empty, error</td>
+</tr>
+<tr>
+<td>Pairing Server</td>
+<td><code>lib/presentation/pairing_server</code></td>
+<td>Desktop pairing control</td>
+<td>Idle, starting, running, sessions, error</td>
+</tr>
+<tr>
+<td>Pairing Client</td>
+<td><code>lib/presentation/pairing_client</code></td>
+<td>Mobile pairing scan/manual URL</td>
+<td>Initial, scanning, connecting, connected, error</td>
+</tr>
+<tr>
+<td>Desktop SSH QR</td>
+<td><code>lib/presentation/desktop_connection_qr</code></td>
+<td>Desktop SSH QR profile creation/history</td>
+<td>Form, QR dialog, history</td>
+</tr>
+<tr>
+<td>Mobile SSH QR Import</td>
+<td><code>lib/presentation/mobile_ssh_qr_import</code></td>
+<td>Scan/paste desktop QR and review imported connection</td>
+<td>Input, scanner, imported card, save/connect</td>
+</tr>
+</tbody></table>
+<h2>7. Flow Diagrams</h2>
+<h3>7.1 Connection Management Flow</h3>
+<pre class="mermaid">
+flowchart TD
+  A[HomeScreen loads] --&gt; B[ConnectionBloc loads saved connections]
+  B --&gt; C{Saved connections?}
+  C --&gt;|No| D[Show empty state]
+  C --&gt;|Yes| E[Show saved connection cards]
+  E --&gt; F{User action}
+  F --&gt;|New| G[ConnectionFormPage create mode]
+  F --&gt;|Edit| H[ConnectionFormPage edit mode]
+  F --&gt;|Delete| I[Confirm delete]
+  F --&gt;|SSH| J[Open SSH terminal]
+  F --&gt;|SFTP| K[Open SFTP browser]
+  G --&gt; L[Validate form]
+  H --&gt; L
+  L --&gt;|Valid| M[ConnectionSaveRequested]
+  L --&gt;|Invalid| N[Inline validation errors]
+  M --&gt; B
+  I --&gt; O[ConnectionDeleteRequested]
+  O --&gt; B
+</pre>
+<h3>7.2 SSH Terminal Flow</h3>
+<pre class="mermaid">
+sequenceDiagram
+  actor User
+  participant Home
+  participant SSH as SshBloc
+  participant Repo as SshRepository
+  participant Term as SSHTerminalScreen
+
+  User-&gt;&gt;Home: Select SSH quick-connect
+  Home-&gt;&gt;Term: Navigate with connection
+  Term-&gt;&gt;SSH: SshConnectRequested
+  SSH-&gt;&gt;Repo: Open SSH shell
+  Repo--&gt;&gt;SSH: Output stream
+  SSH--&gt;&gt;Term: Connected + output
+  User-&gt;&gt;Term: Type command / special key
+  Term-&gt;&gt;SSH: Send input event
+  SSH-&gt;&gt;Repo: Write to shell
+  alt Failure
+    Repo--&gt;&gt;SSH: Error
+    SSH--&gt;&gt;Term: Error state with retry
+  end
+</pre>
+<h3>7.3 SFTP Browser Flow</h3>
+<pre class="mermaid">
+flowchart TD
+  A[Open SFTP Browser] --&gt; B[Load current path]
+  B --&gt; C{Load result}
+  C --&gt;|Files| D[Render SFTP file list]
+  C --&gt;|Empty| E[Render empty directory]
+  C --&gt;|Error| F[Render retry state]
+  D --&gt; G{User action}
+  G --&gt;|Tap folder| B
+  G --&gt;|Navigate breadcrumb/up/root| B
+  G --&gt;|Download/Upload| H[Show transfer progress]
+  G --&gt;|Rename/Delete/Create folder| I[Run file operation]
+  H --&gt; J{Cancel?}
+  J --&gt;|Yes| K[Cancel transfer]
+  H --&gt;|Complete| B
+  I --&gt; B
+  F --&gt;|Retry| B
+</pre>
+<h3>7.4 Local Network Scanner Flow</h3>
+<pre class="mermaid">
+flowchart TD
+  A[Home: Scan Local Network] --&gt; B[NetworkScannerScreen]
+  B --&gt; C[Dispatch ScanRequested]
+  C --&gt; D[NetworkScannerBloc]
+  D --&gt; E[NetworkScannerUseCases.scanLocalNetwork]
+  E --&gt; F{Result}
+  F --&gt;|Servers found| G[Render discovered server list]
+  F --&gt;|No servers| H[Render empty state]
+  F --&gt;|Exception| I[Render Scan Failed]
+  G --&gt; J[User taps server]
+  J --&gt; K[Open New Connection prefilled]
+  H --&gt;|Manual entry| K
+  H --&gt;|Scan Again| C
+  I --&gt;|Retry| C
+</pre>
+<h3>7.5 Desktop Server &amp; Mobile Pairing Flow</h3>
+<pre class="mermaid">
+sequenceDiagram
+  actor DesktopUser
+  actor MobileUser
+  participant Server as PairingServerScreen
+  participant ServerBloc as PairingServerBloc
+  participant Client as PairingClientScreen
+  participant ClientBloc as PairingClientBloc
+
+  DesktopUser-&gt;&gt;Server: Start Server
+  Server-&gt;&gt;ServerBloc: PairingServerStartRequested
+  ServerBloc--&gt;&gt;Server: Running with URL/token
+  Server--&gt;&gt;DesktopUser: Show QR code
+  MobileUser-&gt;&gt;Client: Scan QR or enter URL
+  Client-&gt;&gt;ClientBloc: PairingUrlSubmitted
+  ClientBloc--&gt;&gt;Client: Connected
+  ClientBloc--&gt;&gt;ServerBloc: Active session discovered
+  ServerBloc--&gt;&gt;Server: Show active device
+</pre>
+<h3>7.6 Desktop SSH QR Profile Flow</h3>
+<pre class="mermaid">
+flowchart TD
+  A[DesktopConnectionQrScreen] --&gt; B[Auto-fill host/user if available]
+  B --&gt; C[User enters name, host, port, username, auth]
+  C --&gt; D[Save &amp; Show QR]
+  D --&gt; E[Persist DesktopConnectionQrProfile]
+  E --&gt; F[Show QR dialog]
+  F --&gt; G[Close dialog]
+  G --&gt; H[Saved QR Profiles history]
+  H --&gt; I{History action}
+  I --&gt;|Show QR| F
+  I --&gt;|Edit| C
+  I --&gt;|Delete| H
+</pre>
+<h3>7.7 Mobile SSH QR Import Flow</h3>
+<pre class="mermaid">
+flowchart TD
+  A[MobileSshQrImportScreen] --&gt; B{Input method}
+  B --&gt;|Camera| C[QrScanPreview]
+  B --&gt;|Paste payload| D[Payload TextField]
+  C --&gt; E[MobileSshQrPayload.parse]
+  D --&gt; E
+  E --&gt;|Valid| F[Imported connection card]
+  E --&gt;|Invalid| G[SnackBar parse error]
+  F --&gt; H{User action}
+  H --&gt;|Edit before save| I[ConnectionFormPage prefilled]
+  H --&gt;|Save| J[ConnectionSaveRequested]
+  H --&gt;|Terminal/SFTP| K[SshConnectRequested]
+</pre>
+<h3>7.8 Connection Export / JSON Import Flow</h3>
+<pre class="mermaid">
+flowchart TD
+  A[Home saved connection menu] --&gt; B[Export]
+  B --&gt; C[ConnectionExportUseCases]
+  C --&gt; D[ft-ssh-connection JSON]
+  D --&gt; E{Output}
+  E --&gt;|Copy| F[Clipboard]
+  E --&gt;|Save File| G[JSON file]
+  E --&gt;|Share| H[System share sheet]
+  E --&gt;|QR Code| I[QR dialog]
+  G --&gt; J[New Connection Import JSON]
+  D --&gt; J
+  J --&gt; K[ConnectionImportUseCases]
+  K --&gt;|Valid| L[Prefill ConnectionFormPage]
+  K --&gt;|Invalid| M[ConnectionError]
+  L --&gt; N[User reviews and saves]
+</pre>
+<h2>8. State Transitions</h2>
+<table><tbody>
+<tr>
+<th>Owner</th>
+<th>States</th>
+<th>Trigger summary</th>
+</tr>
+<tr>
+<td><code>ConnectionBloc</code></td>
+<td>initial, loading, loaded, saving, saved, deleting, exporting, imported, error</td>
+<td>Home load, save/delete, export/import JSON</td>
+</tr>
+<tr>
+<td><code>SshBloc</code></td>
+<td>initial, connecting, connected, output, error, disconnected</td>
+<td>Terminal/SFTP quick-connect, command input, connection failure</td>
+</tr>
+<tr>
+<td><code>NetworkScannerBloc</code></td>
+<td>initial, scanning, completed, empty, error</td>
+<td>Auto scan, retry, clear error</td>
+</tr>
+<tr>
+<td><code>PairingServerBloc</code></td>
+<td>initial, starting, running, stopped, error</td>
+<td>Start server, stop server, session update, start failure</td>
+</tr>
+<tr>
+<td><code>PairingClientBloc</code></td>
+<td>initial, scanning, connecting, connected, error</td>
+<td>Scan/request URL, discovery success/failure</td>
+</tr>
+<tr>
+<td>SFTP transfer UI</td>
+<td>queued, running, progress, completed, cancelled, failed</td>
+<td>Upload/download start, progress, cancel, complete</td>
+</tr>
+<tr>
+<td>QR import UI</td>
+<td>idle, scanning, imported, saving, error</td>
+<td>Camera/paste payload, parse, save, parse failure</td>
+</tr>
+</tbody></table>
+<h2>9. Data Entities</h2>
+<table><tbody>
+<tr>
+<th>Entity</th>
+<th>Purpose</th>
+<th>Key fields</th>
+<th>Persistence / source</th>
+</tr>
+<tr>
+<td><code>ServerConnectionEntity</code></td>
+<td>Saved or draft SSH connection</td>
+<td>id, name, host, port, username, password, privateKey, privateKeyPassphrase</td>
+<td>Connection repository / form drafts</td>
+</tr>
+<tr>
+<td><code>FileItemEntity</code></td>
+<td>SFTP file or directory row</td>
+<td>name, path, isDirectory, size, permissions, modifiedTime</td>
+<td>SSH/SFTP repository</td>
+</tr>
+<tr>
+<td><code>DiscoveredServerEntity</code></td>
+<td>LAN scan result</td>
+<td>ip, port, banner</td>
+<td>Network scanner datasource</td>
+</tr>
+<tr>
+<td><code>PairingServerInfoEntity</code></td>
+<td>Desktop pairing server info</td>
+<td>host, port, token, url</td>
+<td>Pairing datasource</td>
+</tr>
+<tr>
+<td><code>PairingSessionEntity</code></td>
+<td>Active paired device</td>
+<td>id, deviceName, devicePlatform, ipAddress, connectedAt</td>
+<td>Pairing repository/server state</td>
+</tr>
+<tr>
+<td><code>DesktopConnectionQrProfile</code></td>
+<td>Locally saved desktop SSH QR profile</td>
+<td>id, name, host, port, username, auth data, createdAt</td>
+<td><code>DesktopConnectionQrStore</code></td>
+</tr>
+<tr>
+<td><code>MobileSshQrPayload</code></td>
+<td>Parsed desktop QR payload</td>
+<td>type, version, name, host, port, username, auth</td>
+<td>QR scanner/manual payload</td>
+</tr>
+<tr>
+<td><code>ConnectionExportPayload</code></td>
+<td>Portable connection JSON</td>
+<td>type, version, name, host, port, username, auth</td>
+<td>EP08 export / EP09 import</td>
+</tr>
+</tbody></table>
+<h3>9.1 Entity Relationship Overview</h3>
+<pre class="mermaid">
+erDiagram
+  ServerConnectionEntity ||--o{ FileItemEntity : browses
+  ServerConnectionEntity ||--o{ DesktopConnectionQrProfile : exported_as
+  DesktopConnectionQrProfile ||--|| MobileSshQrPayload : encodes
+  MobileSshQrPayload ||--|| ServerConnectionEntity : imports_to
+  DiscoveredServerEntity ||--|| ServerConnectionEntity : prefill_draft
+  PairingServerInfoEntity ||--o{ PairingSessionEntity : has
+</pre>
+<h2>10. Non-Functional Requirements</h2>
+<table><tbody>
+<tr>
+<th>ID</th>
+<th>Category</th>
+<th>Requirement</th>
+<th>Target</th>
+</tr>
+<tr>
+<td>NFR-001</td>
+<td>Security</td>
+<td>Password/private key/passphrase values must not be logged.</td>
+<td>No plaintext secret logs in app or tests.</td>
+</tr>
+<tr>
+<td>NFR-002</td>
+<td>Security</td>
+<td>QR and JSON payloads containing credentials are trusted-local sensitive data.</td>
+<td>Warnings in export/import flows.</td>
+</tr>
+<tr>
+<td>NFR-003</td>
+<td>Reliability</td>
+<td>Save/import/export must use existing bloc/usecase paths.</td>
+<td>No persistence bypass.</td>
+</tr>
+<tr>
+<td>NFR-004</td>
+<td>Usability</td>
+<td>Primary screens must render on 390x844 screenshot surface.</td>
+<td>No overflow in screenshot/golden tests.</td>
+</tr>
+<tr>
+<td>NFR-005</td>
+<td>Performance</td>
+<td>Network scan runs concurrently and keeps UI responsive.</td>
+<td>Scanning state visible while work runs.</td>
+</tr>
+<tr>
+<td>NFR-006</td>
+<td>Portability</td>
+<td>E2E screenshot flows run through Flutter driver.</td>
+<td>Per-epic <code>e2e/e2e-ep*.sh</code> reports.</td>
+</tr>
+<tr>
+<td>NFR-007</td>
+<td>Recoverability</td>
+<td>Error states expose retry or fallback when possible.</td>
+<td>SSH, SFTP, scanner, pairing, import flows have recovery actions.</td>
+</tr>
+</tbody></table>
+<h2>11. Business Rules</h2>
+<table><tbody>
+<tr>
+<th>ID</th>
+<th>Rule</th>
+<th>Related stories</th>
+</tr>
+<tr>
+<td>BR-001</td>
+<td>Connection port must be an integer from 1 to 65535.</td>
+<td>EP03, EP07, EP09</td>
+</tr>
+<tr>
+<td>BR-002</td>
+<td>Edit Connection must not show New Connection-only import actions.</td>
+<td>EP03.US004, EP09.US001</td>
+</tr>
+<tr>
+<td>BR-003</td>
+<td><code>ft-ssh-connection</code> JSON must use supported type/version.</td>
+<td>EP08, EP09</td>
+</tr>
+<tr>
+<td>BR-004</td>
+<td>Network scan selection pre-fills name, host, and port only; credentials remain user-controlled.</td>
+<td>EP04.US003</td>
+</tr>
+<tr>
+<td>BR-005</td>
+<td>Imported QR/JSON connection must be reviewed before save/connect.</td>
+<td>EP07, EP09</td>
+</tr>
+<tr>
+<td>BR-006</td>
+<td>Password-bearing QR/export payloads are intended for trusted local transfer.</td>
+<td>EP06, EP07, EP08</td>
+</tr>
+<tr>
+<td>BR-007</td>
+<td>Save imported connection must dispatch normal <code>ConnectionSaveRequested</code>.</td>
+<td>EP07.US004, EP09.US005</td>
+</tr>
+</tbody></table>
+<h2>12. Error Matrix</h2>
+<table><tbody>
+<tr>
+<th>ID</th>
+<th>Trigger</th>
+<th>User-facing behavior</th>
+<th>Screen</th>
+</tr>
+<tr>
+<td>E-001</td>
+<td>Invalid connection name/host/user/port</td>
+<td>Inline validation; save blocked</td>
+<td>Connection Form</td>
+</tr>
+<tr>
+<td>E-002</td>
+<td>SSH connection failure</td>
+<td>Terminal error state with Retry</td>
+<td>SSH Terminal</td>
+</tr>
+<tr>
+<td>E-003</td>
+<td>SFTP list or transfer failure</td>
+<td>Error state or failed transfer row</td>
+<td>SFTP Browser</td>
+</tr>
+<tr>
+<td>E-004</td>
+<td>Network scan exception</td>
+<td>Scan Failed state with Retry</td>
+<td>Network Scanner</td>
+</tr>
+<tr>
+<td>E-005</td>
+<td>Pairing server start/discovery failure</td>
+<td>Error state/message</td>
+<td>Pairing Server/Client</td>
+</tr>
+<tr>
+<td>E-006</td>
+<td>Invalid mobile QR payload</td>
+<td>SnackBar parse error</td>
+<td>Mobile SSH QR Import</td>
+</tr>
+<tr>
+<td>E-007</td>
+<td>Invalid JSON import payload</td>
+<td>ConnectionError/snackbar with validation reason</td>
+<td>Connection Form</td>
+</tr>
+<tr>
+<td>E-008</td>
+<td>Export/copy/save/share failure</td>
+<td>ConnectionError/snackbar</td>
+<td>Export Dialog</td>
+</tr>
+</tbody></table>
+<h2>13. Risks / Assumptions / Open Questions</h2>
+<table><tbody>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+<tr>
+<td>Credential QR/JSON shared outside trusted context</td>
+<td>Server credential exposure</td>
+<td>Warnings, review before save/connect, no logging</td>
+</tr>
+<tr>
+<td>LAN scan blocked by OS/network</td>
+<td>No discovery results</td>
+<td>Manual fallback and retry</td>
+</tr>
+<tr>
+<td>Pairing port conflict</td>
+<td>Server cannot start</td>
+<td>Auto-select available port</td>
+</tr>
+<tr>
+<td>Platform screenshot differences</td>
+<td>Review churn</td>
+<td>Stable screenshot surface and per-epic reports</td>
+</tr>
+<tr>
+<td>Feature docs drift from implementation</td>
+<td>Incorrect SRS</td>
+<td>Generate SRS from <code>resources/</code> and trace to tests</td>
+</tr>
+</tbody></table>
+<p>Assumptions:</p>
+<ul>
+<li>Flutter app remains the primary implementation.</li>
+<li>Local connection persistence remains available through the existing repository.</li>
+<li>SSH/SFTP repositories provide platform-specific network behavior behind domain abstractions.</li>
+<li>QR/JSON profile transfer is a trusted-local workflow, not a public sharing system.</li>
+</ul>
+<p>Open questions:</p>
+<ul>
+<li>Dedicated per-use-case files do not yet exist; this SRS consolidates use cases from epic docs.</li>
+<li>Detailed ERD for data-layer persistence is outside current presentation scope.</li>
+<li>SFTP operation capabilities depend on repository/platform support and may require deeper data-layer SRS later.</li>
+</ul>
+<h2>14. Traceability Snapshot</h2>
+<table><tbody>
+<tr>
+<th>Epic</th>
+<th>Presentation files</th>
+<th>User story doc</th>
+<th>Technical design</th>
+<th>Test / runner</th>
+</tr>
+<tr>
+<td>EP01</td>
+<td><code>lib/presentation/ssh/</code></td>
+<td><code>resources/user-story/ep01-ssh-terminal.md</code></td>
+<td><code>resources/technial-design/ep01-ssh-terminal.md</code></td>
+<td><code>widget_screenshot_test.dart</code>, <code>e2e-ep01-ssh-terminal.sh</code></td>
+</tr>
+<tr>
+<td>EP02</td>
+<td><code>lib/presentation/sftp_browser/</code></td>
+<td><code>resources/user-story/ep02-sftp-file-browser.md</code></td>
+<td><code>resources/technial-design/ep02-sftp-file-browser.md</code></td>
+<td><code>widget_screenshot_test.dart</code>, <code>e2e-ep02-sftp-file-browser.sh</code></td>
+</tr>
+<tr>
+<td>EP03</td>
+<td><code>lib/presentation/home/</code>, <code>lib/presentation/connection/</code></td>
+<td><code>resources/user-story/ep03-connection-management.md</code></td>
+<td><code>resources/technial-design/ep03-connection-management.md</code></td>
+<td><code>widget_test.dart</code>, connection bloc tests, <code>e2e-ep03-connection-management.sh</code></td>
+</tr>
+<tr>
+<td>EP04</td>
+<td><code>lib/presentation/network_scanner/</code></td>
+<td><code>resources/user-story/ep04-local-network-scanner.md</code></td>
+<td><code>resources/technial-design/ep04-local-network-scanner.md</code></td>
+<td>network scanner tests, <code>ep04_network_scanner_test.dart</code>, <code>e2e-ep04-local-network-scanner.sh</code></td>
+</tr>
+<tr>
+<td>EP05</td>
+<td><code>lib/presentation/pairing_server/</code>, <code>lib/presentation/pairing_client/</code></td>
+<td><code>resources/user-story/ep05-pairing.md</code></td>
+<td><code>resources/technial-design/ep05-pairing.md</code></td>
+<td>pairing tests, <code>ep05_*_test.dart</code>, <code>e2e-ep05-desktop-server-mobile-pairing.sh</code></td>
+</tr>
+<tr>
+<td>EP06</td>
+<td><code>lib/presentation/desktop_connection_qr/</code></td>
+<td><code>resources/user-story/ep06-desktop-ssh-qr.md</code></td>
+<td><code>resources/technial-design/ep06-desktop-ssh-qr.md</code></td>
+<td><code>ep06_desktop_ssh_qr_screenshot_test.dart</code>, <code>e2e-ep06-desktop-ssh-qr.sh</code></td>
+</tr>
+<tr>
+<td>EP07</td>
+<td><code>lib/presentation/mobile_ssh_qr_import/</code></td>
+<td><code>resources/user-story/ep07-mobile-ssh-qr-import.md</code></td>
+<td><code>resources/technial-design/ep07-mobile-ssh-qr-import.md</code></td>
+<td><code>ep07_mobile_ssh_qr_import_screenshot_test.dart</code>, <code>e2e-ep07-mobile-ssh-qr-import.sh</code></td>
+</tr>
+<tr>
+<td>EP08</td>
+<td><code>lib/presentation/connection/</code></td>
+<td><code>resources/user-story/ep08-connection-export.md</code></td>
+<td><code>resources/technial-design/ep08-connection-export.md</code></td>
+<td><code>ep08_connection_export_screenshot_test.dart</code>, <code>e2e-ep08-connection-export.sh</code></td>
+</tr>
+<tr>
+<td>EP09</td>
+<td><code>lib/presentation/connection/</code></td>
+<td><code>resources/user-story/ep09-new-connection-json-import.md</code></td>
+<td><code>resources/technial-design/ep09-new-connection-json-import.md</code></td>
+<td><code>ep09_connection_json_import_screenshot_test.dart</code>, <code>e2e-ep09-new-connection-json-import.sh</code></td>
+</tr>
+</tbody></table>
+<h2>15. Verification Plan</h2>
+<ul>
+<li>Run <code>flutter test</code> for unit/widget/golden validation.</li>
+<li>Run <code>bash -n resources/srs.sh e2e/*.sh e2e.sh</code> for script syntax.</li>
+<li>Run <code>./resources/srs.sh</code> to regenerate <code>srs-index.html</code> from <code>resources/srs.md</code>.</li>
+<li>Run per-epic e2e screenshot scripts when visual review is needed.</li>
+<li>Run <code>./e2e.sh</code> for aggregate screenshot target execution.</li>
+</ul>
+<h2>16. Changelog</h2>
+<table><tbody>
+<tr>
+<th>Date</th>
+<th>Change</th>
+</tr>
+<tr>
+<td>2026-05-22</td>
+<td>Initial SRS consolidated from <code>resources/</code> user stories, technical designs, presentation feature structure, and e2e screenshot artifacts.</td>
+</tr>
+</tbody></table>
+    </main>
+  </div>
+  <footer><p>Workflow: edit Markdown source → run <code>./resources/srs.sh</code> → refresh browser.</p></footer>
+  <script>
+    const toc = document.getElementById('toc');
+    const headings = document.querySelectorAll('main h2, main h3');
+    let currentH2Li = null;
+    let currentH3Ul = null;
+    let h2Idx = 0;
+    let h3Idx = 0;
+
+    headings.forEach((h) => {
+      if (h.tagName === 'H2') {
+        h2Idx++;
+        h3Idx = 0;
+        const id = 'sec-' + h2Idx;
+        h.id = id;
+        const li = document.createElement('li');
+        li.className = 'toc-h2';
+        li.innerHTML = '<a href="#' + id + '"><span class="toggle">▾</span>' + h.textContent + '</a>';
+        const ul = document.createElement('ul');
+        ul.className = 'toc-h3';
+        li.appendChild(ul);
+        toc.appendChild(li);
+        currentH2Li = li;
+        currentH3Ul = ul;
+
+        li.querySelector('a').addEventListener('click', (event) => {
+          if (event.target.classList.contains('toggle')) {
+            event.preventDefault();
+            li.classList.toggle('collapsed');
+          }
+        });
+      } else if (h.tagName === 'H3' && currentH3Ul) {
+        h3Idx++;
+        const id = 'sec-' + h2Idx + '-' + h3Idx;
+        h.id = id;
+        const li = document.createElement('li');
+        li.innerHTML = '<a href="#' + id + '">' + h.textContent + '</a>';
+        currentH3Ul.appendChild(li);
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        toc.querySelectorAll('a.active, li.active').forEach((el) => el.classList.remove('active'));
+        const link = toc.querySelector('a[href="#' + id + '"]');
+        if (!link) return;
+        link.classList.add('active');
+        const parentLi = link.closest('.toc-h2');
+        if (parentLi) {
+          parentLi.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    headings.forEach((h) => observer.observe(h));
+
+    if (window.mermaid) {
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    }
+  </script>
+</body>
+</html>
