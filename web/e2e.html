@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E2E Report</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; color: #111827; background: #f9fafb; }
+    h1, h2 { margin-bottom: 12px; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 6px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    figure { margin: 0; }
+    img { width: 100%; height: auto; border: 1px solid #d1d5db; border-radius: 10px; background: #fff; }
+    figcaption { margin-top: 8px; font-size: 14px; color: #374151; word-break: break-word; }
+    .story { display: block; margin-top: 4px; color: #6b7280; font-size: 12px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+    .filter-button { border: 1px solid #d1d5db; border-radius: 999px; background: #fff; color: #374151; cursor: pointer; padding: 6px 12px; }
+    .filter-button.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+    .hidden { display: none; }
+    .pass { color: #15803d; font-weight: 600; }
+    .fail { color: #dc2626; font-weight: 600; }
+    .summary { margin-bottom: 20px; }
+    .summary-stats { display: flex; gap: 24px; }
+    .stat { }
+    .stat-number { font-size: 24px; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>E2E Report</h1>
+  <div class="card summary">
+    <h2>Test Summary</h2>
+    <div class="summary-stats">
+      <div class="stat">
+        <div class="stat-number" style="color: #15803d;">10</div>
+        <div>Passed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" style="color: #dc2626;">2</div>
+        <div>Failed</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Passed Tests</h2>
+    <ul>
+      <li class="pass">✓ integration_test/screenshot_test.dart</li>
+      <li class="pass">✓ integration_test/widget_screenshot_test.dart</li>
+      <li class="pass">✓ integration_test/ep05_pairing_test.dart</li>
+      <li class="pass">✓ integration_test/ep05_e2e_pairing_test.dart</li>
+      <li class="pass">✓ integration_test/ep05_qr_full_flow_test.dart</li>
+      <li class="pass">✓ integration_test/ep05_screenshot_e2e_test.dart</li>
+      <li class="pass">✓ integration_test/ep06_desktop_ssh_qr_screenshot_test.dart</li>
+      <li class="pass">✓ integration_test/ep07_mobile_ssh_qr_import_screenshot_test.dart</li>
+      <li class="pass">✓ integration_test/ep08_connection_export_screenshot_test.dart</li>
+      <li class="pass">✓ integration_test/ep09_connection_json_import_screenshot_test.dart</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Failed Tests</h2>
+    <ul>
+      <li class="fail">✗ Flutter unit tests</li>
+      <li class="fail">✗ integration_test/ep04_network_scanner_test.dart</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Screenshots</h2>
+    <div class="filters" aria-label="Screenshot user-story filters">
+      <button class="filter-button active" type="button" data-filter="all">All</button>
+      <button class="filter-button" type="button" data-filter="ep08-connection-export">EP08 Connection Export</button>
+      <button class="filter-button" type="button" data-filter="core-screens">Core Screens</button>
+      <button class="filter-button" type="button" data-filter="ep05-desktop-server-mobile-pairing">EP05 Desktop Server Mobile Pairing</button>
+      <button class="filter-button" type="button" data-filter="ep04-local-network-scanner">EP04 Local Network Scanner</button>
+      <button class="filter-button" type="button" data-filter="ep06-desktop-ssh-qr">EP06 Desktop SSH QR</button>
+      <button class="filter-button" type="button" data-filter="ep07-mobile-ssh-qr-import">EP07 Mobile SSH QR Import</button>
+      <button class="filter-button" type="button" data-filter="ep09-connection-json-import">EP09 Connection JSON Import</button>
+      <button class="filter-button" type="button" data-filter="widget-screens">Widget Screens</button>
+    </div>
+    <div class="grid" id="screenshots-grid">
+      <figure data-story="ep08-connection-export"><img src="screenshots/connection_export_dialog-ios.png" alt="connection_export_dialog-ios.png" /><figcaption>connection_export_dialog-ios.png<span class="story">EP08 Connection Export</span></figcaption></figure>
+      <figure data-story="ep08-connection-export"><img src="screenshots/connection_export_qr-ios.png" alt="connection_export_qr-ios.png" /><figcaption>connection_export_qr-ios.png<span class="story">EP08 Connection Export</span></figcaption></figure>
+      <figure data-story="core-screens"><img src="screenshots/connection_form_create-ios.png" alt="connection_form_create-ios.png" /><figcaption>connection_form_create-ios.png<span class="story">Core Screens</span></figcaption></figure>
+      <figure data-story="core-screens"><img src="screenshots/connection_form_edit-ios.png" alt="connection_form_edit-ios.png" /><figcaption>connection_form_edit-ios.png<span class="story">Core Screens</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_client_connected-ios.png" alt="e2e_client_connected-ios.png" /><figcaption>e2e_client_connected-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_client_connecting-ios.png" alt="e2e_client_connecting-ios.png" /><figcaption>e2e_client_connecting-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_client_error-ios.png" alt="e2e_client_error-ios.png" /><figcaption>e2e_client_error-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_client_initial-ios.png" alt="e2e_client_initial-ios.png" /><figcaption>e2e_client_initial-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_server_error-ios.png" alt="e2e_server_error-ios.png" /><figcaption>e2e_server_error-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_server_idle-ios.png" alt="e2e_server_idle-ios.png" /><figcaption>e2e_server_idle-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_server_multisession-ios.png" alt="e2e_server_multisession-ios.png" /><figcaption>e2e_server_multisession-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_server_running-ios.png" alt="e2e_server_running-ios.png" /><figcaption>e2e_server_running-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_server_session-ios.png" alt="e2e_server_session-ios.png" /><figcaption>e2e_server_session-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_server_starting-ios.png" alt="e2e_server_starting-ios.png" /><figcaption>e2e_server_starting-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/e2e_server_stopped-ios.png" alt="e2e_server_stopped-ios.png" /><figcaption>e2e_server_stopped-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/ep04_empty-ios.png" alt="ep04_empty-ios.png" /><figcaption>ep04_empty-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/ep04_error-ios.png" alt="ep04_error-ios.png" /><figcaption>ep04_error-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/ep04_results-ios.png" alt="ep04_results-ios.png" /><figcaption>ep04_results-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/ep04_scanning-ios.png" alt="ep04_scanning-ios.png" /><figcaption>ep04_scanning-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_client_connected-ios.png" alt="ep05_client_connected-ios.png" /><figcaption>ep05_client_connected-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_client_connecting-ios.png" alt="ep05_client_connecting-ios.png" /><figcaption>ep05_client_connecting-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_client_error-ios.png" alt="ep05_client_error-ios.png" /><figcaption>ep05_client_error-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_client_initial-ios.png" alt="ep05_client_initial-ios.png" /><figcaption>ep05_client_initial-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_client_scanning-ios.png" alt="ep05_client_scanning-ios.png" /><figcaption>ep05_client_scanning-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_server_active_session-ios.png" alt="ep05_server_active_session-ios.png" /><figcaption>ep05_server_active_session-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_server_error-ios.png" alt="ep05_server_error-ios.png" /><figcaption>ep05_server_error-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_server_idle-ios.png" alt="ep05_server_idle-ios.png" /><figcaption>ep05_server_idle-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_server_multiple_sessions-ios.png" alt="ep05_server_multiple_sessions-ios.png" /><figcaption>ep05_server_multiple_sessions-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_server_qr_display-ios.png" alt="ep05_server_qr_display-ios.png" /><figcaption>ep05_server_qr_display-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/ep05_server_running-ios.png" alt="ep05_server_running-ios.png" /><figcaption>ep05_server_running-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep06-desktop-ssh-qr"><img src="screenshots/ep06_desktop_ssh_qr_01_form-ios.png" alt="ep06_desktop_ssh_qr_01_form-ios.png" /><figcaption>ep06_desktop_ssh_qr_01_form-ios.png<span class="story">EP06 Desktop SSH QR</span></figcaption></figure>
+      <figure data-story="ep06-desktop-ssh-qr"><img src="screenshots/ep06_desktop_ssh_qr_02_dialog-ios.png" alt="ep06_desktop_ssh_qr_02_dialog-ios.png" /><figcaption>ep06_desktop_ssh_qr_02_dialog-ios.png<span class="story">EP06 Desktop SSH QR</span></figcaption></figure>
+      <figure data-story="ep06-desktop-ssh-qr"><img src="screenshots/ep06_desktop_ssh_qr_03_history-ios.png" alt="ep06_desktop_ssh_qr_03_history-ios.png" /><figcaption>ep06_desktop_ssh_qr_03_history-ios.png<span class="story">EP06 Desktop SSH QR</span></figcaption></figure>
+      <figure data-story="ep07-mobile-ssh-qr-import"><img src="screenshots/ep07_mobile_ssh_qr_import_01_empty-ios.png" alt="ep07_mobile_ssh_qr_import_01_empty-ios.png" /><figcaption>ep07_mobile_ssh_qr_import_01_empty-ios.png<span class="story">EP07 Mobile SSH QR Import</span></figcaption></figure>
+      <figure data-story="ep07-mobile-ssh-qr-import"><img src="screenshots/ep07_mobile_ssh_qr_import_02_imported_card-ios.png" alt="ep07_mobile_ssh_qr_import_02_imported_card-ios.png" /><figcaption>ep07_mobile_ssh_qr_import_02_imported_card-ios.png<span class="story">EP07 Mobile SSH QR Import</span></figcaption></figure>
+      <figure data-story="ep07-mobile-ssh-qr-import"><img src="screenshots/ep07_mobile_ssh_qr_import_03_prefilled-ios.png" alt="ep07_mobile_ssh_qr_import_03_prefilled-ios.png" /><figcaption>ep07_mobile_ssh_qr_import_03_prefilled-ios.png<span class="story">EP07 Mobile SSH QR Import</span></figcaption></figure>
+      <figure data-story="ep08-connection-export"><img src="screenshots/ep08_connection_export_01_home-ios.png" alt="ep08_connection_export_01_home-ios.png" /><figcaption>ep08_connection_export_01_home-ios.png<span class="story">EP08 Connection Export</span></figcaption></figure>
+      <figure data-story="ep08-connection-export"><img src="screenshots/ep08_connection_export_02_menu-ios.png" alt="ep08_connection_export_02_menu-ios.png" /><figcaption>ep08_connection_export_02_menu-ios.png<span class="story">EP08 Connection Export</span></figcaption></figure>
+      <figure data-story="ep08-connection-export"><img src="screenshots/ep08_connection_export_03_dialog-ios.png" alt="ep08_connection_export_03_dialog-ios.png" /><figcaption>ep08_connection_export_03_dialog-ios.png<span class="story">EP08 Connection Export</span></figcaption></figure>
+      <figure data-story="ep08-connection-export"><img src="screenshots/ep08_connection_export_04_qr-ios.png" alt="ep08_connection_export_04_qr-ios.png" /><figcaption>ep08_connection_export_04_qr-ios.png<span class="story">EP08 Connection Export</span></figcaption></figure>
+      <figure data-story="ep09-connection-json-import"><img src="screenshots/ep09_connection_json_import_01_empty_form-ios.png" alt="ep09_connection_json_import_01_empty_form-ios.png" /><figcaption>ep09_connection_json_import_01_empty_form-ios.png<span class="story">EP09 Connection JSON Import</span></figcaption></figure>
+      <figure data-story="ep09-connection-json-import"><img src="screenshots/ep09_connection_json_import_02_prefilled_form-ios.png" alt="ep09_connection_json_import_02_prefilled_form-ios.png" /><figcaption>ep09_connection_json_import_02_prefilled_form-ios.png<span class="story">EP09 Connection JSON Import</span></figcaption></figure>
+      <figure data-story="ep09-connection-json-import"><img src="screenshots/ep09_connection_json_import_03_saved-ios.png" alt="ep09_connection_json_import_03_saved-ios.png" /><figcaption>ep09_connection_json_import_03_saved-ios.png<span class="story">EP09 Connection JSON Import</span></figcaption></figure>
+      <figure data-story="core-screens"><img src="screenshots/home_screen-ios.png" alt="home_screen-ios.png" /><figcaption>home_screen-ios.png<span class="story">Core Screens</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/network_scanner_empty-ios.png" alt="network_scanner_empty-ios.png" /><figcaption>network_scanner_empty-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/network_scanner_error-ios.png" alt="network_scanner_error-ios.png" /><figcaption>network_scanner_error-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/network_scanner_results-ios.png" alt="network_scanner_results-ios.png" /><figcaption>network_scanner_results-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep04-local-network-scanner"><img src="screenshots/network_scanner_scanning-ios.png" alt="network_scanner_scanning-ios.png" /><figcaption>network_scanner_scanning-ios.png<span class="story">EP04 Local Network Scanner</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/qr_flow_01_app_home-ios.png" alt="qr_flow_01_app_home-ios.png" /><figcaption>qr_flow_01_app_home-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/qr_flow_02_open_pairing_menu-ios.png" alt="qr_flow_02_open_pairing_menu-ios.png" /><figcaption>qr_flow_02_open_pairing_menu-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/qr_flow_03_pairing_server_idle-ios.png" alt="qr_flow_03_pairing_server_idle-ios.png" /><figcaption>qr_flow_03_pairing_server_idle-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/qr_flow_04_tap_start_server-ios.png" alt="qr_flow_04_tap_start_server-ios.png" /><figcaption>qr_flow_04_tap_start_server-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="ep05-desktop-server-mobile-pairing"><img src="screenshots/qr_flow_05_show_qr_for_mobile_scan-ios.png" alt="qr_flow_05_show_qr_for_mobile_scan-ios.png" /><figcaption>qr_flow_05_show_qr_for_mobile_scan-ios.png<span class="story">EP05 Desktop Server Mobile Pairing</span></figcaption></figure>
+      <figure data-story="core-screens"><img src="screenshots/sftp_browser_screen-ios.png" alt="sftp_browser_screen-ios.png" /><figcaption>sftp_browser_screen-ios.png<span class="story">Core Screens</span></figcaption></figure>
+      <figure data-story="core-screens"><img src="screenshots/ssh_terminal_screen-ios.png" alt="ssh_terminal_screen-ios.png" /><figcaption>ssh_terminal_screen-ios.png<span class="story">Core Screens</span></figcaption></figure>
+      <figure data-story="widget-screens"><img src="screenshots/widgets_sftp_files-ios.png" alt="widgets_sftp_files-ios.png" /><figcaption>widgets_sftp_files-ios.png<span class="story">Widget Screens</span></figcaption></figure>
+      <figure data-story="widget-screens"><img src="screenshots/widgets_terminal-ios.png" alt="widgets_terminal-ios.png" /><figcaption>widgets_terminal-ios.png<span class="story">Widget Screens</span></figcaption></figure>
+      <figure data-story="widget-screens"><img src="screenshots/widgets_transfer_progress-ios.png" alt="widgets_transfer_progress-ios.png" /><figcaption>widgets_transfer_progress-ios.png<span class="story">Widget Screens</span></figcaption></figure>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll('.filter-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        document.querySelectorAll('.filter-button').forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        document.querySelectorAll('#screenshots-grid figure').forEach((figure) => {
+          figure.classList.toggle('hidden', filter !== 'all' && figure.dataset.story !== filter);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
