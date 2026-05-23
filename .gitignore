@@ -94,7 +94,6 @@ android/fastlane/report.xml
 ios/fastlane/report.xml
 .backup_app_dist
 screen.png
-screenshots
 android/app/.cxx
 android/.kotlin
 coverage
